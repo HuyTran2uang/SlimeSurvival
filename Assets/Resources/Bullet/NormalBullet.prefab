@@ -41,12 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3340485923997482209}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c5fb94f1190d6e498761b5370b6cb95, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bb4ea1e1d5e6bb4cac748c7c83dcb5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _seeker: {fileID: 5603556849586828546}
-  _target: {fileID: 0}
-  _moveSpeed: 5
+  _bullet: {fileID: 5603556849586828546}
+  _moveSpeed: 8
 --- !u!1 &4508518047141167391
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,7 +71,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4508518047141167391}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.117, y: 0, z: 0}
+  m_LocalPosition: {x: 0.024, y: -0.0058, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -91,13 +90,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f30f0367da6cae48b00de54245ff292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bullet: {fileID: 5603556849586828546}
   _pointCheck: {fileID: 7236189324564830866}
-  _areaCheck: 0.06
+  _areaCheck: 0.07
   _targetLayers:
     serializedVersion: 2
     m_Bits: 128
   _attack: 0
-  _showGizmos: 1
+  _target: {fileID: 0}
+  _showGizmos: 0
 --- !u!1 &5603556849586828547
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,6 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5603556849586828546}
+  - component: {fileID: 1907224980065742156}
   m_Layer: 0
   m_Name: NormalBullet
   m_TagString: NormalBullet
@@ -132,6 +134,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1907224980065742156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5603556849586828547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58123641abc230c43ab040a8488b698f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 0}
 --- !u!1 &5603556849671229330
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +173,7 @@ Transform:
   m_GameObject: {fileID: 5603556849671229330}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.51, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5603556851169886496}

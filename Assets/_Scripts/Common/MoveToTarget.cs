@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MoveToTarget : MonoBehaviour
+public class MoveToTarget : FixedMonoBehaviour, ISelectTarget
 {
     [SerializeField] protected Transform _seeker;
     [SerializeField] protected Transform _target;
@@ -17,40 +17,8 @@ public class MoveToTarget : MonoBehaviour
         _seeker.position = Vector2.MoveTowards(_seeker.position, _target.position, _moveSpeed * Time.deltaTime);
     }
 
-    protected virtual void OnAutoRotateToTarget()
-    {
-        if (_target == null) return;
-        Vector3 direction = (_seeker.position - _target.position).normalized;
-        float angle = Mathf.Rad2Deg * Mathf.Acos(Vector3.Dot(direction, Vector3.up));
-        Vector3 cross = Vector3.Cross(direction, Vector3.up);
-        angle = -Mathf.Sign(cross.z) * angle - 90f;
-        _seeker.localEulerAngles = Vector3.forward * angle;
-    }
-
-    protected virtual void LoadComponent()
-    {
-        //for override
-    }
-
-    protected virtual void LoadState()
-    {
-        //for override
-    }
-
-    protected virtual void OnEnable()
-    {
-        //for override
-    }
-
     protected virtual void FixedUpdate()
     {
-        OnMoveToTarget();
-        OnAutoRotateToTarget();
-    }
-
-    protected virtual void Reset()
-    {
-        LoadComponent();
-        LoadState();
+        this.OnMoveToTarget();
     }
 }

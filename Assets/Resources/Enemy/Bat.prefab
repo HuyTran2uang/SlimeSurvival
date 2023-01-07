@@ -46,13 +46,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemy: {fileID: 9209269243044794267}
   _attacker: {fileID: 9209269243044794271}
-  _attack: 1
-  _speedAttack: 2
-  _timer: 0
+  _attack: 2
+  _speedAttack: 1
   _areaAttack: 0.24
   _targetLayers:
     serializedVersion: 2
     m_Bits: 64
+  _showGizmos: 0
 --- !u!1 &9209269241419815620
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,8 +130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemy: {fileID: 9209269243044794267}
-  _maxHp: 1
-  _currentHp: 1
+  _maxHp: 2
+  _currentHp: 2
 --- !u!1 &9209269242619069120
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,8 +262,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9209269243044794270}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.47, y: -0.73, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -303,10 +303,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Bat
-  <Health>k__BackingField: 1
-  <Attack>k__BackingField: 1
-  <SpeedAttack>k__BackingField: 2
-  <MoveSpeed>k__BackingField: 2
+  <Health>k__BackingField: 2
+  <Attack>k__BackingField: 2
+  <SpeedAttack>k__BackingField: 1
+  <MoveSpeed>k__BackingField: 3
 --- !u!1 &9209269243261755269
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,5 +353,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _seeker: {fileID: 9209269243044794271}
   _target: {fileID: 0}
-  _moveSpeed: 2
+  _moveSpeed: 3
   _enemy: {fileID: 9209269243044794267}

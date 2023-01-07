@@ -5,7 +5,7 @@ public class Snail : Enemy
         Name = "Snail";
         Health = 1;
         Attack = 1;
-        SpeedAttack = 2;
+        SpeedAttack = 1;
         MoveSpeed = 1;
     }
 }

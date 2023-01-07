@@ -1,13 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour, ILevelUp, IDamageable
+public class PlayerHealth : FixedMonoBehaviourSingleton<PlayerHealth>, ILevelUp, IDamageable, IReborn, IStartBattle
 {
     [SerializeField] private Transform _player;
     [SerializeField] private PlayerHealthBar _healthBar;
     [SerializeField] private int _maxHp;
     [SerializeField] private int _currentHp;
+    [SerializeField] private int _recoveryHp; //recovery hp/5s
+    [SerializeField] private float _recoveryTime;
+    private float _timer;
+
+    public void SetMaxHealth(int value)
+    {
+        _maxHp += value;
+        _currentHp += value;
+        _healthBar.SetMaxHealthBar(_maxHp);
+        _healthBar.SetCurrentHealthBar(_currentHp);
+    }
 
     public void RecoveryHealth(int hp)
     {
@@ -20,7 +29,6 @@ public class PlayerHealth : MonoBehaviour, ILevelUp, IDamageable
 
     public void OnNotifyLevelUp()
     {
-        _maxHp++;
         _currentHp = _maxHp;
         _healthBar.SetMaxHealthBar(_maxHp);
         _healthBar.SetCurrentHealthBar(_currentHp);
@@ -29,31 +37,59 @@ public class PlayerHealth : MonoBehaviour, ILevelUp, IDamageable
     public void TakeDamage(int damage)
     {
         _currentHp -= damage;
+        _healthBar.SetCurrentHealthBar(_currentHp);
         if (_currentHp <= 0)
-            Die();
+            this.Die();
     }
 
     private void Die()
     {
         GameManager.Instance.Pause();
-        _player.gameObject.SetActive(false);
+        MenuManager.Instance.Open("Reborn");
     }
 
-    private void SetBase()
+    private void RecoveryHealth()
+    {
+        if (_currentHp == _maxHp) return;
+        if (_timer > 0) return;
+        _timer = _recoveryTime;
+        this.RecoveryHealth(_recoveryHp);
+    }
+
+    private void RecoveryMaxHP()
+    {
+        _currentHp = _maxHp;
+        _healthBar.SetMaxHealthBar(_maxHp);
+        _healthBar.SetCurrentHealthBar(_currentHp);
+    }
+
+    public void OnNotifyReborn()
+    {
+        this.RecoveryMaxHP();
+    }
+
+    public void OnNotifyStartBattle()
+    {
+        this.RecoveryMaxHP();
+    }
+
+    protected override void LoadComponent()
     {
         _player = transform.parent;
-        _healthBar = _player.GetComponentInChildren<PlayerHealthBar>();
+        _healthBar = PlayerHealthBar.Instance;
         _maxHp = 5;
         _currentHp = _maxHp;
+        _recoveryHp = 0;
+        _recoveryTime = 5;
     }
 
-    private void OnEnable()
+    private void FixedUpdate()
     {
-        _currentHp = _maxHp;
+        TimeManager.Instance.Timer(ref _timer);
     }
 
-    private void Reset()
+    private void Update()
     {
-        SetBase();
+        this.RecoveryHealth();
     }
 }

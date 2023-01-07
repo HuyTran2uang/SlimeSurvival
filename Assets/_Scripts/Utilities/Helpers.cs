@@ -1,17 +1,7 @@
 using UnityEngine;
 
-/// <summary>
-/// A static class for general helpful methods
-/// </summary>
 public static class Helpers
 {
-    /// <summary>
-    /// Destroy all child objects of this transform (Unintentionally evil sounding).
-    /// Use it like so:
-    /// /// <code>
-    /// transform.DestroyChildren();
-    /// </code>
-    /// </summary>
     public static void DestroyChildren(this Transform t)
     {
         foreach (Transform child in t) Object.Destroy(child.gameObject);
@@ -20,5 +10,21 @@ public static class Helpers
     public static void SetActiveChildren(this Transform t)
     {
         foreach (Transform child in t) child.gameObject.SetActive(false);
+    }
+
+    public static void Flip(Transform self, Transform mark)
+    {
+        if (self.position.x > mark.position.x)
+            self.localScale = Vector3.one;
+        if (self.position.x < mark.position.x)
+            self.localScale = new Vector3(-1, 1, 1);
+    }
+
+    public static void Flip(Transform self, Vector2 direction)
+    {
+        if (direction.x > 0)
+            self.localScale = Vector3.one;
+        if (direction.x < 0)
+            self.localScale = new Vector3(-1, 1, 1);
     }
 }

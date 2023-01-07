@@ -3,12 +3,12 @@ using UnityEngine;
 [System.Serializable]
 public class Pool
 {
-    public GameObject prefab;
-    public int size;
+    [field: SerializeField] public GameObject Prefab { get; private set; }
+    [field: SerializeField] public int Size { get; private set; }
 
     public Pool(GameObject prefab, int size)
     {
-        this.prefab = prefab;
-        this.size = size;
+        this.Prefab = prefab;
+        this.Size = size;
     }
 }

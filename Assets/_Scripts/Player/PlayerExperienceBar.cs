@@ -1,13 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerExperienceBar : MonoBehaviour
+public class PlayerExperienceBar : MonoBehaviourSingleton<PlayerExperienceBar>
 {
     [SerializeField] private Slider _slider;
 
-    public void SetHealthBar(int rateHealth)
+    public void SetMaxExpBar(int maxExp)
     {
-        _slider.maxValue = 1;
-        _slider.value = rateHealth;
+        _slider.maxValue = maxExp;
+    }
+
+    public void SetExpBar(int exp)
+    {
+        _slider.value = exp;
     }
 }

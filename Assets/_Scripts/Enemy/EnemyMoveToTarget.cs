@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMoveToTarget : MoveToTarget
@@ -8,35 +6,36 @@ public class EnemyMoveToTarget : MoveToTarget
 
     protected override void OnMoveToTarget()
     {
-        if (_target == null || _target.gameObject.activeSelf == false)
-        {
-            return;
-        }
+        if (_target.gameObject.activeSelf == false) return;
+        if (_target == null) return;
+        _seeker.position = Vector2.MoveTowards(
+            _seeker.position,
+            _target.position,
+            Random.Range(_moveSpeed - _moveSpeed * 0.1f, _moveSpeed + _moveSpeed * 0.1f) * Time.deltaTime
+        );
+        Helpers.Flip(_seeker, _target);
+    }
 
-        if (_target != null)
-        {
-            _seeker.position = Vector2.MoveTowards(_seeker.position, _target.position, _moveSpeed * Time.deltaTime);
-        }
+    private void SetTarget()
+    {
+        if (GameObject.FindWithTag("Player") == null) return;
+        _target = GameObject.FindWithTag("Player").transform;
     }
 
     protected override void LoadComponent()
     {
         _enemy = transform.parent.GetComponent<Enemy>();
-    }
-
-    protected override void LoadState()
-    {
         _moveSpeed = _enemy.MoveSpeed;
         _seeker = transform.parent;
     }
 
     protected override void FixedUpdate()
     {
-        OnMoveToTarget();
+        this.OnMoveToTarget();
     }
 
-    protected override void OnEnable()
+    private void OnEnable()
     {
-        _target = GameObject.FindWithTag("Player").transform;
+        this.SetTarget();
     }
 }

@@ -1,22 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviourSingleton<InputManager>
+public class InputManager : MonoBehaviourSingleton<InputManager>, IStartBattle
 {
-    [SerializeField] private Transform _player;
-    private Vector2 _direction;
+    private IChangeDirection[] _listChange;
+    private bool _isPlayerReady;
 
     private void SetDirection()
     {
-        _direction.x = Input.GetAxisRaw("Horizontal");
-        _direction.y = Input.GetAxisRaw("Vertical");
-        if (_player == null) return;
-        _player.GetComponentInChildren<IChangeDirection>().OnChangeDirection(_direction.normalized);
+        if (!_isPlayerReady) return;
+        Vector2 direction;
+        direction.x = Input.GetAxisRaw("Horizontal");
+        direction.y = Input.GetAxisRaw("Vertical");
+        foreach (IChangeDirection i in _listChange)
+            i.ChangeDirection(direction.normalized);
+    }
+
+    public void OnNotifyStartBattle()
+    {
+        _isPlayerReady = false;
+        if (GameObject.FindWithTag("Player") == null) return;
+        _listChange = GameObject.FindWithTag("Player").GetComponentsInChildren<IChangeDirection>();
+        _isPlayerReady = true;
     }
 
     private void Update()
     {
-        SetDirection();
+        this.SetDirection();
     }
 }

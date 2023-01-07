@@ -1,20 +1,18 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour, IChangeDirection
+public class PlayerMovement : FixedMonoBehaviourSingleton<PlayerMovement>, IChangeDirection
 {
     [SerializeField] private Transform _player;
     [SerializeField] private PlayerAnimation _playerAnimation;
     [SerializeField] private float _moveSpeed;
-    private Vector3 _direction;
+    [SerializeField] private Vector2 _direction;
 
-    private void SetBase()
+    public void IncreaseMoveSpeed(float value)
     {
-        _player = transform.parent;
-        _playerAnimation = _player.GetComponentInChildren<PlayerAnimation>();
-        _moveSpeed = 2;
+        _moveSpeed += value;
     }
 
-    public void OnChangeDirection(Vector3 direction)
+    public void ChangeDirection(Vector3 direction)
     {
         _direction = direction;
     }
@@ -24,40 +22,29 @@ public class PlayerMovement : MonoBehaviour, IChangeDirection
         _player.Translate(_direction * _moveSpeed * Time.deltaTime);
     }
 
-    private void Flip()
-    {
-        if (_direction.x > 0)
-            _player.localScale = Vector3.one;
-        if (_direction.x < 0)
-            _player.localScale = new Vector3(-1, 1, 1);
-    }
-
     private void ChangeAnimationState()
     {
-        if (_direction != Vector3.zero)
+        if (_direction != Vector2.zero)
             _playerAnimation.OnMoveState();
         else
             _playerAnimation.OnIdleState();
     }
 
+    protected override void LoadComponent()
+    {
+        _player = transform.parent;
+        _playerAnimation = _player.GetComponentInChildren<PlayerAnimation>();
+        _moveSpeed = 1.5f;
+    }
+
     private void Update()
     {
-        Flip();
-        ChangeAnimationState();
+        Helpers.Flip(_player, _direction);
+        this.ChangeAnimationState();
     }
 
     private void FixedUpdate()
     {
-        OnMovement();
-    }
-
-    private void OnEnable()
-    {
-        _moveSpeed = 2;
-    }
-
-    private void Reset()
-    {
-        SetBase();
+        this.OnMovement();
     }
 }

@@ -3,54 +3,23 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviourSingleton<PoolManager>
 {
-    [SerializeField] List<Pool> _pools = new List<Pool>();
-    [SerializeField] protected Dictionary<string, Queue<GameObject>> _poolDictionary = new Dictionary<string, Queue<GameObject>>();
+    [SerializeField] private List<Pool> _pools = new List<Pool>();
+    Dictionary<string, Queue<GameObject>> _poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
     public void Add(Pool pool)
     {
+        foreach (Pool p in _pools)
+            if (p.Prefab.tag == pool.Prefab.tag) return;
         _pools.Add(pool);
         Queue<GameObject> objectPool = new Queue<GameObject>();
-        for (int i = 0; i < pool.size; i++)
+        for (int i = 0; i < pool.Size; i++)
         {
-            GameObject obj = Instantiate(pool.prefab, transform);
+            GameObject obj = Instantiate(pool.Prefab, transform);
             obj.SetActive(false);
             objectPool.Enqueue(obj);
         }
-        _poolDictionary.Add(pool.prefab.tag, objectPool);
+        _poolDictionary.Add(pool.Prefab.tag, objectPool);
     }
-
-    public void ResetPool()
-    {
-        _pools = new List<Pool>();
-        _poolDictionary = new Dictionary<string, Queue<GameObject>>();
-        Helpers.DestroyChildren(transform);
-    }
-
-    #region Editor
-    private void Reset()
-    {
-        this.LoadPrefabs();
-        this.HidePrefabs();
-    }
-
-    private void LoadPrefabs()
-    {
-        Transform prefabs = transform;
-        foreach (Transform prefab in prefabs)
-        {
-            _pools.Add(new Pool(prefab.gameObject, 100));
-        }
-    }
-
-    private void HidePrefabs()
-    {
-        Transform prefabs = transform;
-        foreach (Transform prefab in prefabs)
-        {
-            prefab.gameObject.SetActive(false);
-        }
-    }
-    #endregion
 
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
@@ -62,9 +31,10 @@ public class PoolManager : MonoBehaviourSingleton<PoolManager>
 
         GameObject objectToSpawn = _poolDictionary[tag].Dequeue();
 
-        objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
+        if (objectToSpawn.activeSelf == false)
+            objectToSpawn.SetActive(true);
 
         _poolDictionary[tag].Enqueue(objectToSpawn);
 

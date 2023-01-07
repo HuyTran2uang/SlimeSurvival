@@ -1,41 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttack : MonoBehaviour
+public class EnemyAttack : FixedMonoBehaviour
 {
     [SerializeField] private Enemy _enemy;
     [SerializeField] private Transform _attacker;
     [SerializeField] private int _attack;
     [SerializeField] private float _speedAttack;
-    [SerializeField] private float _timer;
+    private float _timer;
     [SerializeField] private float _areaAttack;
     [SerializeField] private LayerMask _targetLayers;
-
-    private void Timer()
-    {
-        if (_timer > 0) _timer -= Time.deltaTime;
-    }
 
     private void OnAttack()
     {
         if (_timer > 0) return;
-        _timer = _speedAttack;
+        _timer = 1 / _speedAttack;
         Collider2D hit = Physics2D.OverlapCircle(_attacker.position, _areaAttack, _targetLayers);
         if (hit == null) return;
         hit.GetComponentInChildren<IDamageable>().TakeDamage(_attack);
     }
 
-    private void LoadComponent()
+    protected override void LoadComponent()
     {
         _enemy = transform.parent.GetComponent<Enemy>();
-    }
-
-    private void LoadState()
-    {
         _attack = _enemy.Attack;
         _speedAttack = _enemy.SpeedAttack;
         _attacker = transform.parent;
+        _areaAttack = transform.parent.GetComponent<CircleCollider2D>().radius;
+        _targetLayers = LayerMask.GetMask("Player");
     }
 
     private void Update()
@@ -45,17 +36,13 @@ public class EnemyAttack : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Timer();
+        TimeManager.Instance.Timer(ref _timer);
     }
 
-    private void Reset()
-    {
-        LoadComponent();
-        LoadState();
-    }
-
+    [SerializeField] private bool _showGizmos;
     private void OnDrawGizmos()
     {
+        if (!_showGizmos) return;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(_attacker.position, _areaAttack);
     }

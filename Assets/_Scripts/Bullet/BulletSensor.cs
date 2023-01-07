@@ -1,46 +1,39 @@
 using UnityEngine;
 
-public class BulletSensor : MonoBehaviour
+public class BulletSensor : FixedMonoBehaviour
 {
+    [SerializeField] private Transform _bullet;
     [SerializeField] private Transform _pointCheck;
     [SerializeField] private float _areaCheck;
     [SerializeField] private LayerMask _targetLayers;
     [SerializeField] private int _attack;
 
-    private void SetAttack()
+    public void SetAttack(int damage)
     {
-        _attack = PlayerAttack.Instance.Attack;
+        _attack = damage;
     }
 
     private void OnSensor()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(_pointCheck.position, _areaCheck, _targetLayers);
-        if (hits != null || hits.Length > 0)
+        Collider2D hit = Physics2D.OverlapCircle(_pointCheck.position, _areaCheck, _targetLayers);
+        if (hit != null && hit.gameObject.layer == 7)
         {
-            foreach (var hit in hits)
-            {
-                if (hit.gameObject.layer == 7)
-                {
-                    SendDamageToEnemy(hit);
-                }
-            }
+            hit.GetComponentInChildren<IDamageable>().TakeDamage(_attack);
+            _bullet.gameObject.SetActive(false);
         }
     }
 
-    private void SendDamageToEnemy(Collider2D enemy)
+    protected override void LoadComponent()
     {
-        enemy.GetComponentInChildren<IDamageable>().TakeDamage(_attack);
-        _pointCheck.gameObject.SetActive(false);
-    }
-
-    private void OnEnable()
-    {
-        SetAttack();
+        _bullet = transform.parent;
+        _pointCheck = this.transform;
+        _areaCheck = 0.07f;
+        _targetLayers = LayerMask.GetMask("Enemy");
     }
 
     private void Update()
     {
-        OnSensor();
+        this.OnSensor();
     }
 
     [SerializeField] private bool _showGizmos;

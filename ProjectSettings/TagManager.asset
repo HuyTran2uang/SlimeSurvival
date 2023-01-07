@@ -8,6 +8,16 @@ TagManager:
   - Tile
   - Snail
   - Bat
+  - Scorpion
+  - Ooze
+  - SmallCompound
+  - MediumCompound
+  - LargeCompound
+  - Crystal
+  - BronzeChest
+  - SilverChest
+  - GoldChest
+  - TinyGreenSlime
   layers:
   - Default
   - TransparentFX
@@ -17,7 +27,7 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - 
+  - Item
   - 
   - 
   - 
@@ -44,4 +54,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 2983074429
     locked: 0

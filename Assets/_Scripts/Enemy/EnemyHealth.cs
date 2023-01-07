@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour, IDamageable
+public class EnemyHealth : FixedMonoBehaviour, IDamageable
 {
     [SerializeField] private Enemy _enemy;
     [SerializeField] private int _maxHp;
@@ -17,30 +15,20 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        GameObject.FindWithTag("Player").GetComponentInChildren<IKilledEnemy>().OnKilled(_enemy);
+        if (GameObject.FindWithTag("Player") != null)
+            GameObject.FindWithTag("Player").GetComponentInChildren<IKilledEnemy>().OnKilled(_enemy);
         _enemy.gameObject.SetActive(false);
     }
 
-    private void LoadComponent()
+    protected override void LoadComponent()
     {
         _enemy = transform.parent.GetComponent<Enemy>();
-    }
-
-    private void LoadState()
-    {
         _maxHp = _enemy.Health;
         _currentHp = _maxHp;
     }
 
     private void OnEnable()
     {
-        LoadComponent();
-        LoadState();
-    }
-
-    private void Reset()
-    {
-        LoadComponent();
-        LoadState();
+        _currentHp = _maxHp;
     }
 }
