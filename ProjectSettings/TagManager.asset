@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - NormalBullet
+  - Tile
+  - Snail
+  - Bat
+  - Scorpion
+  - Ooze
+  - SmallCompound
+  - MediumCompound
+  - LargeCompound
+  - Crystal
+  - BronzeChest
+  - SilverChest
+  - GoldChest
+  - TinyGreenSlime
+  - OneRay
+  - TwoRays
+  - ThreeRays
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Player
+  - Enemy
+  - Item
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 2983074429
+    locked: 0
