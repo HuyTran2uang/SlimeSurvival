@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolManager : MonoBehaviourSingleton<PoolManager>
+public class PoolManager : MonoBehaviourSingleton<PoolManager>, IStartBattle
 {
-    [SerializeField] private List<Pool> _pools = new List<Pool>();
-    Dictionary<string, Queue<GameObject>> _poolDictionary = new Dictionary<string, Queue<GameObject>>();
+    [SerializeField] private List<Pool> _pools;
+    Dictionary<string, Queue<GameObject>> _poolDictionary;
 
     public void Add(Pool pool)
     {
@@ -26,7 +26,9 @@ public class PoolManager : MonoBehaviourSingleton<PoolManager>
         if (!_poolDictionary.ContainsKey(tag))
         {
             Debug.LogWarning($"Pool with tag {tag} doesn't exist.");
-            return null;
+            GameObject prefab = Resources.Load<GameObject>(tag);
+            GameObject obj = Instantiate(prefab, position, rotation);
+            return obj;
         }
 
         GameObject objectToSpawn = _poolDictionary[tag].Dequeue();
@@ -39,5 +41,11 @@ public class PoolManager : MonoBehaviourSingleton<PoolManager>
         _poolDictionary[tag].Enqueue(objectToSpawn);
 
         return objectToSpawn;
+    }
+
+    public void OnNotifyStartBattle()
+    {
+        _pools = new List<Pool>();
+        _poolDictionary = new Dictionary<string, Queue<GameObject>>();
     }
 }

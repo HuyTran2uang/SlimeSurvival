@@ -4,6 +4,11 @@ public class Currency : MonoBehaviourSingleton<Currency>
 {
     [SerializeField] private int _crystal;
 
+    public int GetCrystal()
+    {
+        return _crystal;
+    }
+
     public void IncreaseCrystal(int value)
     {
         _crystal += value;

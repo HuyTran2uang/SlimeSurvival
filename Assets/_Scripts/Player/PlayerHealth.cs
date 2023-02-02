@@ -70,6 +70,10 @@ public class PlayerHealth : FixedMonoBehaviourSingleton<PlayerHealth>, ILevelUp,
 
     public void OnNotifyStartBattle()
     {
+        _maxHp = 5;
+        _currentHp = _maxHp;
+        _recoveryHp = 0;
+        _recoveryTime = 5;
         this.RecoveryMaxHP();
     }
 
@@ -77,10 +81,6 @@ public class PlayerHealth : FixedMonoBehaviourSingleton<PlayerHealth>, ILevelUp,
     {
         _player = transform.parent;
         _healthBar = PlayerHealthBar.Instance;
-        _maxHp = 5;
-        _currentHp = _maxHp;
-        _recoveryHp = 0;
-        _recoveryTime = 5;
     }
 
     private void FixedUpdate()

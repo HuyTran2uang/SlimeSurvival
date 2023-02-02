@@ -72,19 +72,13 @@ public class PetManager : FixedMonoBehaviourSingleton<PetManager>, IStartBattle
         }
     }
 
-    public void OnNotifyStartBattle()
-    {
-        _countBulletRay = 1;
-        this.PushToPool();
-        this.SetTransformPlayer();
-        _oneRay = new OneRay();
-        _twoRays = new TwoRays();
-        _threeRays = new ThreeRays();
-    }
-
     protected override void LoadComponent()
     {
         _petPrefab = Resources.Load<GameObject>("Pet/TinyGreenSlime");
+    }
+
+    public void OnNotifyStartBattle()
+    {
         _quantity = 0;
         _maxQuantity = 5;
         _moveSpeed = 2f;
@@ -92,5 +86,11 @@ public class PetManager : FixedMonoBehaviourSingleton<PetManager>, IStartBattle
         _speedAttack = 1f;
         _maxSpeedAttack = 5f;
         _scopeAttack = 6f;
+        _countBulletRay = 1;
+        this.PushToPool();
+        this.SetTransformPlayer();
+        _oneRay = new OneRay();
+        _twoRays = new TwoRays();
+        _threeRays = new ThreeRays();
     }
 }

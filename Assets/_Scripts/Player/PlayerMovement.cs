@@ -1,6 +1,7 @@
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
-public class PlayerMovement : FixedMonoBehaviourSingleton<PlayerMovement>, IChangeDirection
+public class PlayerMovement : FixedMonoBehaviourSingleton<PlayerMovement>, IChangeDirection, IStartBattle
 {
     [SerializeField] private Transform _player;
     [SerializeField] private PlayerAnimation _playerAnimation;
@@ -34,6 +35,10 @@ public class PlayerMovement : FixedMonoBehaviourSingleton<PlayerMovement>, IChan
     {
         _player = transform.parent;
         _playerAnimation = _player.GetComponentInChildren<PlayerAnimation>();
+    }
+
+    public void OnNotifyStartBattle()
+    {
         _moveSpeed = 1.5f;
     }
 

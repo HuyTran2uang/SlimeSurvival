@@ -29,9 +29,9 @@ public class RayManager : MonoBehaviourSingleton<RayManager>, IStartBattle
 
     private void PushBulletToPool()
     {
-                PoolManager.Instance.Add(new Pool(_prefabOneRay, 50));
-                PoolManager.Instance.Add(new Pool(_prefabTwoRays, 50));
-                PoolManager.Instance.Add(new Pool(_prefabThreeRays, 50));
+        PoolManager.Instance.Add(new Pool(_prefabOneRay, 50));
+        PoolManager.Instance.Add(new Pool(_prefabTwoRays, 50));
+        PoolManager.Instance.Add(new Pool(_prefabThreeRays, 50));
         /*
         switch (_countRay)
         {

@@ -9,7 +9,7 @@ public class Launcher : MonoBehaviour
 
     private void PlayGame()
     {
-        SceneManager.LoadScene("Map");
+        SceneManager.LoadScene("Main");
     }
 
     private void QuitGame()

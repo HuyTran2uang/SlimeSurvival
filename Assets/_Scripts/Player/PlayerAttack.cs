@@ -2,7 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerAttack : FixedMonoBehaviourSingleton<PlayerAttack>
+public class PlayerAttack : FixedMonoBehaviourSingleton<PlayerAttack>, IStartBattle
 {
     [SerializeField] private Transform _player;
     [SerializeField] private float _speedAttack;
@@ -12,7 +12,6 @@ public class PlayerAttack : FixedMonoBehaviourSingleton<PlayerAttack>
     [SerializeField] private float _scopeAttack;
     [SerializeField] private LayerMask _targetLayers;
     private float _maxSpeedAttack;
-    [SerializeField] private GameObject _bulletPrefab;
 
     public int Attack => _attack;
     public float SpeedAttack => _speedAttack;
@@ -55,20 +54,23 @@ public class PlayerAttack : FixedMonoBehaviourSingleton<PlayerAttack>
     {
         if (_nearestTarget == null) return;
         if (_timer > 0) return;
-        RayManager.Instance.OnShoot(_player.position, _nearestTarget.position, Attack);
         _timer = 1 / _speedAttack;
+        RayManager.Instance.OnShoot(_player.position, _nearestTarget.position, Attack);
     }
 
     protected override void LoadComponent()
     {
         _player = transform.parent;
+        _targetLayers = LayerMask.GetMask("Enemy");
+    }
+
+    public void OnNotifyStartBattle()
+    {
         _speedAttack = 1;
         _attack = 1;
         _maxSpeedAttack = 5;
         _timer = 0;
         _scopeAttack = 6;
-        _targetLayers = LayerMask.GetMask("Enemy");
-        _bulletPrefab = Resources.Load<GameObject>("Bullet/NormalBullet");
     }
 
     private void Update()

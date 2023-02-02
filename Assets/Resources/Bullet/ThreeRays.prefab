@@ -57,11 +57,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7554963403941195769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1c870d9d3112df40b61a90513785f39, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f9b6be91628d524f82fbfe205646a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _originalPosition: {x: 0, y: 0, z: 0}
-  _maxDistance: 0
+  _second: 0
 --- !u!1001 &3160875915146625259
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         this.Pause();
         _player = GameObject.FindWithTag("Player");
         List<IStartBattle> obs = new List<IStartBattle>();
+        //add OnNotifyStartBattle() -> list
+        obs.Add(PoolManager.Instance);
         obs.Add(MapManager.Instance);
         obs.Add(EnemySpawner.Instance);
         obs.Add(InputManager.Instance);
@@ -32,16 +35,18 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             obs.Add(i);
         foreach (ItemSpawner i in GameObject.FindObjectsOfType<ItemSpawner>())
             obs.Add(i);
-        
         if (_player != null)
-        {
             foreach (IStartBattle i in _player.GetComponentsInChildren<IStartBattle>())
                 obs.Add(i);
-        }
-
+        //list->OnNotifyStartBattle()
         foreach (IStartBattle ob in obs)
             ob.OnNotifyStartBattle();
         this.SetSpeedX1();
+    }
+
+    public void LeaveBattle()
+    {
+        SceneManager.LoadScene("Main");
     }
 
     public void Reborn()

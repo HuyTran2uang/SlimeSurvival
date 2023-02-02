@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerLevel : FixedMonoBehaviourSingleton<PlayerLevel>, IKilledEnemy
+public class PlayerLevel : FixedMonoBehaviourSingleton<PlayerLevel>, IKilledEnemy, IStartBattle
 {
     [SerializeField] private Transform _player;
     [SerializeField] private int _level;
@@ -69,6 +69,10 @@ public class PlayerLevel : FixedMonoBehaviourSingleton<PlayerLevel>, IKilledEnem
     protected override void LoadComponent()
     {
         _player = transform.parent;
+    }
+
+    public void OnNotifyStartBattle()
+    {
         _level = 1;
         _maxExp = 10;
         _currentExp = 0;

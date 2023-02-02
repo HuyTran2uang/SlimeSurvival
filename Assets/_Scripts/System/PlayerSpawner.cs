@@ -30,12 +30,6 @@ public class PlayerSpawner : FixedMonoBehaviourSingleton<PlayerSpawner>
         return _currentScene != "Launcher" && _currentScene != "Main";
     }
 
-    // private IEnumerator StartBattle()
-    // {
-    //     yield return this.SpawnPlayer();
-    //     GameManager.Instance.StartBattle();
-    // }
-
     private void StartBattle()
     {
         if (_isExistPlayer) return;
@@ -49,7 +43,6 @@ public class PlayerSpawner : FixedMonoBehaviourSingleton<PlayerSpawner>
     private void OnChangeToBattleMap()
     {
         if (!this.ConditionStartBattle()) return;
-        // StartCoroutine(this.StartBattle());
         this.StartBattle();
     }
 

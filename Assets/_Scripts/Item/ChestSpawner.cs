@@ -48,8 +48,8 @@ public class ChestSpawner : ItemSpawner
         float minX = Camera.main.transform.position.x - Camera.main.orthographicSize;
         float maxX = Camera.main.transform.position.x + Camera.main.orthographicSize;
 
-        float minY = Camera.main.transform.position.x - Camera.main.orthographicSize;
-        float maxY = Camera.main.transform.position.x + Camera.main.orthographicSize;
+        float minY = Camera.main.transform.position.y - Camera.main.orthographicSize;
+        float maxY = Camera.main.transform.position.y + Camera.main.orthographicSize;
 
         Vector2 randPos = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
         return randPos;
