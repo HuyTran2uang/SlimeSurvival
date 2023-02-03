@@ -103,7 +103,6 @@ MonoBehaviour:
   _targetLayers:
     serializedVersion: 2
     m_Bits: 128
-  _bulletPrefab: {fileID: 5603556849586828547, guid: 6ecd4263da983f74dab85d9c0fe0edc0, type: 3}
   _showGizmos: 1
 --- !u!1 &3900239267799574673
 GameObject:
@@ -257,7 +256,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f607e12ab162ec547b58609dc2ef7bb8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -268,7 +267,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &3900239267884773070
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -285,7 +284,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &3900239267898768544
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,6 +654,7 @@ MonoBehaviour:
   _player: {fileID: 3900239268908876108}
   _playerAnimation: {fileID: 3900239268158020879}
   _moveSpeed: 2
+  _direction: {x: 0, y: 0}
 --- !u!1 &3900239268763577955
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,6 +713,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: -1311892867
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -807,6 +808,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
