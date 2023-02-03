@@ -1,22 +1,22 @@
 using UnityEngine;
 
-public class SummonPetI : Hextech
+public class PetI : Hextech
 {
     [SerializeField] private int _quantity;
-    [SerializeField] private Hextech _summonPetII;
+    [SerializeField] private Hextech _petII;
 
     public override void Use()
     {
         PetManager.Instance.SpawnPet(_quantity);
         ListHextech.Instance.DeleteHextech(this);
-        ListHextech.Instance.AddHextech(_summonPetII);
+        ListHextech.Instance.AddHextech(_petII);
     }
 
     protected override void LoadComponent()
     {
         _quantity = 1;
-        _summonPetII = Resources.Load<Hextech>("Hextech/SummonPetII");
-        Name = "Summon Pet I";
+        _petII = Resources.Load<Hextech>("Hextech/PetII");
+        Name = "Pet I";
         Sprite = null;
         Description = $"Summon {_quantity} pet";
     }

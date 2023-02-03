@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 549874033423147714}
-  - component: {fileID: 7698205449587772777}
+  - component: {fileID: 1902542452352953809}
   m_Layer: 0
-  m_Name: SummonPetII
+  m_Name: PetII
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7698205449587772777
+--- !u!114 &1902542452352953809
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,11 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1078788479225895857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaa18912790c6d34fb99aac8d0447a49, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e59e9691a0213b4aa807f9d2215b423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Summon Pet II
+  <Name>k__BackingField: Pet II
   <Sprite>k__BackingField: {fileID: 0}
   <Description>k__BackingField: Increase 30% current speed attack of pets
   _rate: 30
-  _summonPetIII: {fileID: 8789359705237415364, guid: 4c11bc01be784064a84ec74d71f51446, type: 3}
+  _petIII: {fileID: 8579139648330847062, guid: 4c11bc01be784064a84ec74d71f51446, type: 3}

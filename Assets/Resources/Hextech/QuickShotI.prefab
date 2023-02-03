@@ -46,4 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Quick Shot I
   <Sprite>k__BackingField: {fileID: 0}
-  <Description>k__BackingField: Decrease 10% Current Speed Attack
+  <Description>k__BackingField: Increase 10% Current Speed Attack
+  _quickShotII: {fileID: 5542380778386016189, guid: 14ea115a5b09e954cb65e24076843ac7, type: 3}

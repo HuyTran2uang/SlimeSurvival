@@ -5,6 +5,14 @@ public class SkinManager : MonoBehaviourSingleton<SkinManager>
 {
     [field: SerializeField] public List<Skin> Skins { get; set; }
 
+    public Skin GetSkinUsing()
+    {
+        foreach (var skin in Skins)
+            if (skin.IsUsing)
+                return skin;
+        return null;
+    }
+
     public void BuySkin(Skin newSkin)
     {
         foreach (var skin in Skins)

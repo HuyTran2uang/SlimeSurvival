@@ -5,6 +5,7 @@ public class QuickShotIII : Hextech
     public override void Use()
     {
         PlayerAttack.Instance.IncreaseSpeedAttack(_rate);
+        ListHextech.Instance.DeleteHextech(this);
     }
 
     protected override void LoadComponent()

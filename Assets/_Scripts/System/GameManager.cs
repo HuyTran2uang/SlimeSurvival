@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         Time.timeScale = _speedGame;
     }
 
-    public void StartBattle()
+    public void SetupBattle()
     {
         this.Pause();
         _player = GameObject.FindWithTag("Player");
@@ -60,6 +60,4 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         this.Resume();
         MenuManager.Instance.Open("Option");
     }
-
-    private void Start() => this.StartBattle();
 }

@@ -5,6 +5,7 @@ public class KnifeSharpenerIII : Hextech
     public override void Use()
     {
         PlayerAttack.Instance.IncreaseDamage(_attack);
+        ListHextech.Instance.DeleteHextech(this);
     }
 
     protected override void LoadComponent()

@@ -45,3 +45,17 @@ public class ThreeRays : Ray
         aro.ChangeDirection(direction);
     }
 }
+
+public class FourRays : Ray
+{
+    public override void Execute(Vector3 posInit, Vector3 posTarget, int damage)
+    {
+        GameObject obj = PoolManager.Instance.SpawnFromPool("Bullet/FourRays", posInit, Quaternion.identity);
+        BulletSensor[] sensors = obj.GetComponentsInChildren<BulletSensor>();
+        foreach (var sensor in sensors)
+            sensor.SetAttack(damage);
+        AutoRotation aro = obj.GetComponent<AutoRotation>();
+        Vector3 direction = (posTarget - posInit).normalized;
+        aro.ChangeDirection(direction);
+    }
+}

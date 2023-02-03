@@ -47,3 +47,4 @@ MonoBehaviour:
   <Name>k__BackingField: Knife Sharpener I
   <Sprite>k__BackingField: {fileID: 0}
   <Description>k__BackingField: Increase Attack Point 1
+  _knifeSharpenerII: {fileID: 6475769696994472232, guid: b5d0872e5d091aa42af69bb05242cb98, type: 3}

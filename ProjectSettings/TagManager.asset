@@ -21,6 +21,7 @@ TagManager:
   - OneRay
   - TwoRays
   - ThreeRays
+  - FourRays
   layers:
   - Default
   - TransparentFX

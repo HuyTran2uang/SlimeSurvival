@@ -5,6 +5,7 @@ public class QuickRunIII : Hextech
     public override void Use()
     {
         PlayerMovement.Instance.IncreaseMoveSpeed(_moveSpeed);
+        ListHextech.Instance.DeleteHextech(this);
     }
 
     protected override void LoadComponent()

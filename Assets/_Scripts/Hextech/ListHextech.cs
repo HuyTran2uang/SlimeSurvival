@@ -49,18 +49,11 @@ public class ListHextech : FixedMonoBehaviourSingleton<ListHextech>
         _hexteches = new List<Hextech>()
         {
             Resources.Load<Hextech>("Hextech/WarriorBloodI"),
-            Resources.Load<Hextech>("Hextech/WarriorBloodII"),
-            Resources.Load<Hextech>("Hextech/WarriorBloodIII"),
             Resources.Load<Hextech>("Hextech/KnifeSharpenerI"),
-            Resources.Load<Hextech>("Hextech/KnifeSharpenerII"),
-            Resources.Load<Hextech>("Hextech/KnifeSharpenerIII"),
             Resources.Load<Hextech>("Hextech/QuickShotI"),
-            Resources.Load<Hextech>("Hextech/QuickShotII"),
-            Resources.Load<Hextech>("Hextech/QuickShotIII"),
             Resources.Load<Hextech>("Hextech/QuickRunI"),
-            Resources.Load<Hextech>("Hextech/QuickRunII"),
-            Resources.Load<Hextech>("Hextech/QuickRunIII"),
-            Resources.Load<Hextech>("Hextech/SummonPetI"),
+            Resources.Load<Hextech>("Hextech/PetI"),
+            Resources.Load<Hextech>("Hextech/MultipleRayI"),
         };
     }
 }

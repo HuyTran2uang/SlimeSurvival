@@ -5,6 +5,7 @@ public class WarriorBloodIII : Hextech
     public override void Use()
     {
         PlayerHealth.Instance.SetMaxHealth(_health);
+        ListHextech.Instance.DeleteHextech(this);
     }
 
     protected override void LoadComponent()

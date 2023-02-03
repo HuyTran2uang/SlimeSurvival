@@ -8,11 +8,6 @@ public class Main : MonoBehaviour
         SceneManager.LoadScene("Launcher");
     }
 
-    public void OpenSkinManager()
-    {
-        //
-    }
-
     public void GoToBattle()
     {
         SceneManager.LoadScene("Map");

@@ -47,3 +47,4 @@ MonoBehaviour:
   <Name>k__BackingField: Warrior Blood I
   <Sprite>k__BackingField: {fileID: 0}
   <Description>k__BackingField: Increase Max Health Point 1
+  _warriorBloodII: {fileID: 6591589138411865843, guid: fb7bba198498cb64c92c3f35db7b03db, type: 3}

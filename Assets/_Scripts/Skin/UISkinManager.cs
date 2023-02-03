@@ -40,7 +40,6 @@ public class UISkinManager : MonoBehaviourSingleton<UISkinManager>
 
     public void BuySkin(Skin newSkin)
     {
-        Debug.Log(newSkin.Name);
         UISkin uISkin = _uiSkinDictionary[newSkin.Name];
         uISkin.ButtonBuy.gameObject.SetActive(false);
         uISkin.ButtonUse.gameObject.SetActive(true);

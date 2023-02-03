@@ -47,3 +47,4 @@ MonoBehaviour:
   <Name>k__BackingField: Quick Shot II
   <Sprite>k__BackingField: {fileID: 0}
   <Description>k__BackingField: Increase 20% Current Speed Attack
+  _quickShotIII: {fileID: 8244118311316869539, guid: 39dda1ee913cd0645ad8af4645ebdb56, type: 3}

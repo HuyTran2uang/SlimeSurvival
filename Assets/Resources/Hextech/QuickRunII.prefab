@@ -47,3 +47,4 @@ MonoBehaviour:
   <Name>k__BackingField: Quick Run II
   <Sprite>k__BackingField: {fileID: 0}
   <Description>k__BackingField: Increase 1 Move Speed
+  _quickRunIII: {fileID: 5566059153149645391, guid: e300221994b11354aa7010082cf332be, type: 3}
