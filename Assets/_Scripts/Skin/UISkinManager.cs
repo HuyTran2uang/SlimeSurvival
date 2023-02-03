@@ -58,9 +58,4 @@ public class UISkinManager : MonoBehaviourSingleton<UISkinManager>
         UISkin uISkin = _uiSkinDictionary[newSkin.Name];
         uISkin.ButtonUse.gameObject.SetActive(false);
     }
-
-    private void Start()
-    {
-        this.SetShowListSkin();
-    }
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 [System.Serializable]
 public class Skin
 {
-    [field: SerializeField] public string Name { get; set; }
-    [field: SerializeField] public Sprite Sprite { get; set; }
-    [field: SerializeField] public GameObject Prefab { get; set; }
-    [field: SerializeField] public int Crystal { get; set; }
-    [field: SerializeField] public bool IsBought { get; set; }
-    [field: SerializeField] public bool IsUsing { get; set; }
+    public string Name;
+    public Sprite Sprite;
+    public GameObject Prefab;
+    public int Crystal;
+    public bool IsBought;
+    public bool IsUsing;
 
     public void Buy()
     {

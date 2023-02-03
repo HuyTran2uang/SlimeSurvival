@@ -12,17 +12,20 @@ public class Currency : MonoBehaviourSingleton<Currency>
     public void IncreaseCrystal(int value)
     {
         _crystal += value;
+        if (FindObjectOfType<UICurrency>() == null) return;
+        UICurrency.Instance.SetCrystalText(_crystal);
     }
 
-    public bool UseCrystal(int value)
+    public void UseCrystal(int value)
     {
-        if (_crystal - value < 0) return false;
+        if (_crystal - value < 0) return;
         _crystal -= value;
-        return true;
+        UICurrency.Instance.SetCrystalText(_crystal);
     }
 
-    public void SetCrystal(int value)
+    public void LoadCrystalData(int value)
     {
         _crystal = value;
+        UICurrency.Instance.SetCrystalText(_crystal);
     }
 }

@@ -13,15 +13,24 @@ public class Main : MonoBehaviour
         SceneManager.LoadScene("Map");
     }
 
-    private void SetCurrencyUI()
+    private void OnLoadData()
     {
-        UICurrency.Instance.SetCrystalText(
-            Currency.Instance.GetCrystal()
-        );
+        if (GameController.Instance.CurrentScene != "Main") return;
+        if (!GameController.Instance.isLoadData) return;
+        GameController.Instance.isLoadData = false;
+        if (LoadData.Instance.LoadGame()) return;
+        NewData.Instance.NewGame();
+    }
+
+    private void Update()
+    {
+        this.OnLoadData();
     }
 
     private void Start()
     {
-        this.SetCurrencyUI();
+        if (GameController.Instance.isLoadData) return;
+        UISkinManager.Instance.SetShowListSkin();
+        UICurrency.Instance.SetCrystalText(Currency.Instance.GetCrystal());
     }
 }

@@ -9,6 +9,7 @@ public class Launcher : MonoBehaviour
 
     private void PlayGame()
     {
+        GameController.Instance.isLoadData = true;
         SceneManager.LoadScene("Main");
     }
 

@@ -533,6 +533,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987746228}
   m_CullTransparentMesh: 1
+--- !u!1 &1000782005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1000782006}
+  - component: {fileID: 1000782007}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1000782006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000782005}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7784176109924865680}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1000782007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000782005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa95a8d54537b843b4404583387b334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoadData: 0
+  CurrentScene: 
 --- !u!1 &1129113300
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,30 +1003,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Skins>k__BackingField:
-  - <Name>k__BackingField: Blue
-    <Sprite>k__BackingField: {fileID: -1173526056, guid: 25073ca9fcf4da2459e6b7176d3be08f, type: 3}
-    <Prefab>k__BackingField: {fileID: 4664270000611070203, guid: d353ba2b6dd45944281af5fa70ae6b9c, type: 3}
-    <Crystal>k__BackingField: 0
-    <IsBought>k__BackingField: 1
-    <IsUsing>k__BackingField: 1
-  - <Name>k__BackingField: Red
-    <Sprite>k__BackingField: {fileID: -141390515, guid: bd8a4a07b4496654fb5d76aba0961364, type: 3}
-    <Prefab>k__BackingField: {fileID: 7787747909730858150, guid: 42ab3b26ee417c34b82ca89840c24f6f, type: 3}
-    <Crystal>k__BackingField: 0
-    <IsBought>k__BackingField: 0
-    <IsUsing>k__BackingField: 0
-  - <Name>k__BackingField: Devil
-    <Sprite>k__BackingField: {fileID: 21300000, guid: 7094be01c2ddb0442ba706fbdd813c2b, type: 3}
-    <Prefab>k__BackingField: {fileID: 2998378485336513336, guid: ad10ca9adac29dd48b3573cb2c2b8e43, type: 3}
-    <Crystal>k__BackingField: 1000
-    <IsBought>k__BackingField: 0
-    <IsUsing>k__BackingField: 0
-  - <Name>k__BackingField: Silly
-    <Sprite>k__BackingField: {fileID: 21300000, guid: 4641928f40035ab4db2bd210958bfafd, type: 3}
-    <Prefab>k__BackingField: {fileID: 3900239268908876111, guid: 987cbad968518924699edecda55a02ca, type: 3}
-    <Crystal>k__BackingField: 500
-    <IsBought>k__BackingField: 0
-    <IsUsing>k__BackingField: 0
+  - Name: Blue
+    Sprite: {fileID: -1173526056, guid: 25073ca9fcf4da2459e6b7176d3be08f, type: 3}
+    Prefab: {fileID: 4664270000611070203, guid: d353ba2b6dd45944281af5fa70ae6b9c, type: 3}
+    Crystal: 0
+    IsBought: 1
+    IsUsing: 1
+  - Name: Red
+    Sprite: {fileID: -141390515, guid: bd8a4a07b4496654fb5d76aba0961364, type: 3}
+    Prefab: {fileID: 7787747909730858150, guid: 42ab3b26ee417c34b82ca89840c24f6f, type: 3}
+    Crystal: 0
+    IsBought: 0
+    IsUsing: 0
+  - Name: Devil
+    Sprite: {fileID: 21300000, guid: 7094be01c2ddb0442ba706fbdd813c2b, type: 3}
+    Prefab: {fileID: 2998378485336513336, guid: ad10ca9adac29dd48b3573cb2c2b8e43, type: 3}
+    Crystal: 100
+    IsBought: 0
+    IsUsing: 0
+  - Name: Silly
+    Sprite: {fileID: 21300000, guid: 4641928f40035ab4db2bd210958bfafd, type: 3}
+    Prefab: {fileID: 3900239268908876111, guid: 987cbad968518924699edecda55a02ca, type: 3}
+    Crystal: 500
+    IsBought: 0
+    IsUsing: 0
 --- !u!1 &7784176108545467397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,6 +1118,7 @@ Transform:
   m_Children:
   - {fileID: 7784176108809945857}
   - {fileID: 7784176108545467399}
+  - {fileID: 1000782006}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SkinManager : MonoBehaviourSingleton<SkinManager>
 {
-    [field: SerializeField] public List<Skin> Skins { get; set; }
+    [field: SerializeField] public List<Skin> Skins { get; private set; }
 
     public Skin GetSkinUsing()
     {
@@ -15,11 +15,12 @@ public class SkinManager : MonoBehaviourSingleton<SkinManager>
 
     public void BuySkin(Skin newSkin)
     {
+        if (Currency.Instance.GetCrystal() < newSkin.Crystal) return;
         foreach (var skin in Skins)
         {
-            if (Currency.Instance.GetCrystal() < skin.Crystal) return;
             if (skin.Name == newSkin.Name)
             {
+                Currency.Instance.UseCrystal(skin.Crystal);
                 skin.IsBought = true;
                 break;
             }
@@ -40,5 +41,31 @@ public class SkinManager : MonoBehaviourSingleton<SkinManager>
                 skin.IsUsing = false;
         }
         UISkinManager.Instance.UseSkin(newSkin);
+    }
+
+    public Skin[] ListSkinBought()
+    {
+        Skin[] skins = new Skin[Skins.Count];
+        int i = 0;
+        foreach (var skin in Skins)
+            if (skin.IsBought)
+            {
+                skins[i] = skin;
+                i++;
+            }
+        return skins;
+    }
+
+    public void LoadListSkinBoughtData(Skin[] skins)
+    {
+        Debug.Log(skins[0].Name);
+        for (int i = 0; i < Skins.Count; i++)
+            foreach (var skin in skins)
+                if (Skins[i].Name == skin.Name)
+                {
+                    Skins[i].IsBought = skin.IsBought;
+                    Skins[i].IsUsing = skin.IsUsing;
+                }
+        UISkinManager.Instance.SetShowListSkin();
     }
 }
